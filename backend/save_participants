@@ -1,0 +1,87 @@
+<?php
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json; charset=utf-8");
+header("Access-Control-Allow-Origin: http://192.168.100.9:5173");
+
+include "conexion.php";
+
+function existe($conn, $table, $id) {
+    $sql = "SELECT 1 FROM `$table` WHERE id = ? LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) return false;
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->store_result();
+    $encontrado = $stmt->num_rows > 0;
+    $stmt->close();
+    return $encontrado;
+}
+
+// Obtención del dataje
+$data = json_decode(file_get_contents("php://input"), true);
+
+$idReserva = intval($data['reservaId']) ?? 0;
+$participantes = $data['participantes'] ?? [];
+$itemsCompartidos = $data['itemsCompartidos'] ?? [];
+$atenciones = $data['atenciones'] ?? [];
+$idEmpleado = intval($data['id_empleado_gestion']) ?? 0;
+$costoReserva = floatval($data['costo_reserva']) ?? 0;
+
+if ($idReserva <= 0) {
+    echo json_encode(["success" => false, "error" => "ID de reserva inválido."]);
+    exit;
+}
+
+$conn->begin_transaction();
+
+try {
+
+    // Primero traer todos los participantes registrados de la reserva
+    $participantesDB = [];
+
+    $stmtParticipantesDB = $conn->prepare("SELECT id FROM cliente WHERE idReserva = ?");
+    $stmtParticipantesDB->bind_param("i", $idReserva);
+    $stmtParticipantesDB->execute();
+    $resultParticipantesDB = $stmtParticipantesDB->get_result();
+    while ($row = $resultParticipantesDB->fetch_assoc()) {
+        $idParticipantesDB[] = $row['id'];
+    }
+    $stmtParticipantesDB->close();
+
+    // Ahora nos encargarmos de borrar participantes que no esten ya
+    $idParticipantesFront = array_column($participantes, 'id');
+    $idParticipantesEliminados = array_diff($idParticipantesDB, $idParticipantesFront);
+
+    foreach($idParticipantesEliminados as $id) {
+        // Antes de eliminar al participante hay que borrar las compras registradas a su nombre
+        // Para eso necesito el movimiento y borrarlo también
+        // Al borrar el movimiento también debo de guardar el stock que se recupera
+
+        $stmtCompras = $conn->prepare(" SELECT co.id, co.idMovimiento as mov, m.cantidad, p.id as prod  
+                                        FROM compra co
+                                        JOIN cliente c ON c.id = co.idCliente
+                                        JOIN movimiento m ON co.idMovimiento = m.id
+                                        JOIN producto p ON p.id = m.idProducto
+                                        WHERE c.id = 335
+                                    ");
+
+        $stmtDeleteParticipante = $conn->prepare("DELETE FROM cliente WHERE id = ?");
+        $stmtDeleteParticipante->bind_param("i", $id);
+        $stmtDeleteParticipante->execute();
+        $stmtDeleteParticipante->close();
+    }
+
+    // Ahora a guardar los participantes existentes
+
+
+    $conn->commit();
+    echo json_encode(["success" => true, "message" => "Cambios sincronizados punto por punto."]);
+
+} catch (Exception $e) {
+    $conn->rollback();
+    echo json_encode(["success" => false, "error" => "Error en la sincronización: " . $e->getMessage() . " en la línea " . $e->getLine()]);
+}
+
+$conn->close();
+?>

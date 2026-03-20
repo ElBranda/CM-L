@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+
+@layer theme, base, components, utilities;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  all: unset !important;
+}
+

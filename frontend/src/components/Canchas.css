@@ -1,0 +1,213 @@
+.canchas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+
+.canchas-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.canchas-header h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #0966f1;
+  margin-bottom: 0.5em;
+}
+
+.canchas-header .canchas-crear-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%; /* ⬅️ mantiene el botón largo */
+}
+.canchas-header .canchas-crear-button:hover {
+  background-color: #388e3c;
+}
+
+.canchas-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.canchas-table thead {
+  background-color: #f0f0f0;
+}
+
+.canchas-table th,
+.canchas-table td {
+  padding: 0.4em 0.6em;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95em;
+}
+
+.canchas-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.canchas-table tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.canchas-table .estado-activa {
+  background-color: #4caf50;
+  color: white;
+  font-weight: 500;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.canchas-table .estado-inactiva {
+  background-color: #f44336;
+  color: white;
+  font-weight: 500;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.canchas-table .boton-horario,
+.canchas-table .boton-editar,
+.canchas-table .boton-eliminar {
+  border: none;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 0.3em;
+}
+
+.canchas-table .boton-horario {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.canchas-table .boton-horario:hover {
+  background-color: #0097a7;
+}
+
+.canchas-table .boton-editar {
+  background-color: #ffc107;
+  color: black;
+}
+
+.canchas-table .boton-editar:hover {
+  background-color: #ffb300;
+}
+
+.canchas-table .boton-eliminar {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.canchas-table .boton-eliminar:hover {
+  background-color: #b71c1c;
+}
+
+.form-cancha {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+.form-cancha-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  gap: 0.8em;
+}
+
+.form-cancha-container h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #0966f1;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.form-cancha-container div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.form-cancha-container label {
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.form-cancha-container input,
+.form-cancha-container select,
+.form-cancha-container textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.4em 0.6em;
+  font-size: 0.95em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-cancha-container textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.form-cancha-activa {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.form-cancha-activa label {
+  font-weight: 500;
+}
+
+.form-cancha-activa input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Botones */
+.form-cancha-container button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-cancha-container button[type="submit"]:hover {
+  background-color: #388e3c;
+}
+
+.form-cancha-container .cancelar-button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-cancha-container .cancelar-button:hover {
+  background-color: #b71c1c;
+}

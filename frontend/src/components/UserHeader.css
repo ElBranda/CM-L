@@ -1,0 +1,42 @@
+/* Contenedor del header */
+.user-header {
+  background-color: gainsboro;
+  padding: 0.5em 1em;
+}
+
+/* Navegación con botones alineados */
+.user-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo base para todos los botones */
+.boton-estandar {
+  background-color: #f0f0f0;
+  color: #0966f1;
+  border: 2px solid #0966f1;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.boton-estandar:hover {
+  background-color: #0966f1;
+  color: white;
+}
+
+.boton-estandar:active {
+  transform: scale(0.98);
+}
+
+/* Posicionamiento específico si querés ajustar más */
+.home-button {
+  margin-right: auto;
+}
+
+.login-button {
+  margin-left: auto;
+}

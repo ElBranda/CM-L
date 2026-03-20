@@ -1,0 +1,114 @@
+.panel-container {
+  padding: 1em 5%;
+  box-sizing: border-box;
+}
+
+
+.panel-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.fecha-control-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  margin-top: 1em;
+  border: .1em solid #ccc;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+.fecha-input-boton {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.fecha-input-boton input[type="date"] {
+  padding: 0.3em;
+  font-size: 0.9em;
+  width: 140px;
+}
+
+.boton-ver-horarios {
+  background-color: #0966f1;
+  color: white;
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.boton-ver-horarios:hover {
+  background-color: #074dc0;
+}
+
+.grid-canchas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+  margin-top: 1em;
+  padding: 0;
+}
+
+.card-cancha {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0 0 1em 0;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.grid-horarios {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+  margin-top: 1em;
+}
+
+.boton-horario {
+  font-size: 0.85em;
+  padding: 0.3em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.boton-horario:hover {
+  background-color: #0966f1;
+  color: white;
+}
+
+.boton-ver-disponibilidad {
+  background-color: #0966f1;
+  color: white;
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.boton-ver-disponibilidad:hover {
+  background-color: #074dc0;
+}
+
+.encabezado-cancha {
+  background-color: #e0e7ff;
+  width: 100%;
+  padding: 1em;
+}
+
+.encabezado-cancha h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.encabezado-cancha p {
+  margin: 0.3em 0 0;
+  font-size: 0.95em;
+}
