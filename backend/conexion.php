@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "padel_system";
+$db = "squema";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
